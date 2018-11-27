@@ -20,7 +20,7 @@ from django.contrib import admin
 from django.urls import path
 
 router = routers.DefaultRouter()
-router.register(r'Perros', views.PerrosViewSet)
+router.register(r'Perro', views.PerrosViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.

@@ -8,7 +8,7 @@ ESTADO = (
         ('DISPONIBLE','DISPONIBLE'),
     )
 
-class Perros(models.Model):
+class Perro(models.Model):
     id = models.AutoField(primary_key = True)
     fotografiaUrl = models.CharField( max_length = 255, default = '' )
     nombre = models.CharField(max_length=50)
