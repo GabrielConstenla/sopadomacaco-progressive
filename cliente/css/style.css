@@ -140,7 +140,7 @@ footer a{
   margin-bottom: 20px;
 }
 
-.imagenes{
+.perroContainer img{
   border-radius: 10%;
   width: 100%;
   flex-flow: wrap;

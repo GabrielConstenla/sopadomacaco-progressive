@@ -1,13 +1,15 @@
-var cacheName = 'misperris-v5';
+var cacheName = 'misperris-v6';
 var filesToCache = [
   '/',
   '/index.html',
   '/galeria.html',
   '/adopta.html',
+  '/login.html',
   '/css/carrusel.css',
   '/css/galerias_style.css',
   '/css/menu.css',
   '/css/style.css',
+  '/css/adoptar.css',
   '/img/familia3-1024.jpg',
   '/img/familia4-1024.jpg',
   '/img/familia5-1024.jpg',
@@ -24,7 +26,7 @@ var filesToCache = [
   '/js/app.js'
 ];
 
-var dataCacheName = 'misperrisData-v1'
+var dataCacheName = 'misperrisData-v2'
 
 self.addEventListener( 'install', function( e ) {
     console.log( '[ServiceWorker] Install' );
@@ -41,7 +43,7 @@ self.addEventListener( 'activate', function( e ) {
     e.waitUntil(
         caches.keys( ).then( function( keyList ) {
             return Promise.all( keyList.map( function( key ) {
-                if ( key != cacheName ) {
+                if (key !== cacheName && key !== dataCacheName) {
                     console.log('[ServiceWorker] Removing old cache', key);
                     return caches.delete( key );
                 }
@@ -53,7 +55,7 @@ self.addEventListener( 'activate', function( e ) {
 
 self.addEventListener('fetch', function(e) {
   console.log('[Service Worker] Fetch', e.request.url);
-  var dataUrl = "http://127.0.0.1:8000/Adoptado/";
+  var dataUrl = "http://127.0.0.1:8000/Perro/";
   if (e.request.url.indexOf(dataUrl) > -1) {
     /*
      * When the request URL contains dataUrl, the app is asking for fresh

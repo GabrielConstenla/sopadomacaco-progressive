@@ -69,7 +69,14 @@
 
     <h1>Galería a mis perris</h1>
 
-    <div class="contenedor_galeria">
+    <select id="perrosFilter" class="perrosFilter">
+        <option value="TODOS">Todos</option>
+        <option value="DISPONIBLE">Disponible</option>
+        <option value="RESCATADO">Rescatado</option>
+        <option value="ADOPTADO">Adoptado</option>
+    </select>
+
+    <!-- <div class="contenedor_galeria">
         <h3>Batdog</h3>
         <p><img class="imagenes" src="img/batdog.jpg"></p>
         <div class="textogaleria">
@@ -107,14 +114,10 @@
           <p><b>Descripcion: </b>Es millonario. Tiene muchas croquetas. No pudo salvar a Spiderguau.</p>
           <p><b>Estado: </b>DISPONIBLE</p>
         </div>
-    </div>
+    </div> -->
 
     <hr>
-
-    <h3>Información desde la API</h3>
-    <p id=txtApiData></p>
-
-    <h1>Perritos desde la API</h1>
+    
     <div id="perrosContainer">
 
     </div>
