@@ -28,7 +28,7 @@
 
   var loadData = function(){
     var xhttp = new XMLHttpRequest();
-    var url = "http://127.0.0.1:8000/Perro/";
+    var url = "https://gaperris2.pythonanywhere.com/Perro/";
 
     // xhttp.onreadystatechange = function() {
     //     if (this.readyState == 4 && this.status == 200) {

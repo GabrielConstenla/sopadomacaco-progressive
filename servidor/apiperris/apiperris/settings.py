@@ -130,4 +130,5 @@ REST_FRAMEWORK = {
 
 CORS_ORIGIN_REGEX_WHITELIST = (
     "http://127.0.0.1:8887",
+    "https://gaperris2.pythonanywhere.com/Perro/",
 )

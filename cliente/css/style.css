@@ -145,6 +145,11 @@ footer a{
   width: 100%;
   flex-flow: wrap;
   max-width: 400px;
+  max-height: 234px;
+}
+
+.perroContainer img, p {
+  margin: auto;
 }
 
 .textogaleria{
@@ -171,10 +176,6 @@ footer a{
     border: solid black 1px;
 }
 
-.perroContainer{
-  overflow: auto;
-}
-
 .selected {
   background-color: #d7fbe8;
   box-shadow: 0px 0px 10px 3px black;
@@ -189,7 +190,14 @@ footer a{
 @media screen and (min-width:320px){
 
   #formulario{
-    width: 70%;
+    width: 80%;
+  }
+
+  .formularioLogin{
+    width: 90%;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
 
   input, textarea, select, button, label{
@@ -210,6 +218,19 @@ footer a{
     max-width: 100%;
     padding: 20px;
     margin: 0;
+    margin-top: auto;
+  }
+
+  .contenedor_formLogin{
+    border: 2px solid;
+    border-color: black;
+    border-radius: 30px;
+    background-color: #d7fbe8;
+    width: 100%;
+    max-width: 100%;
+    padding: 20px;
+    margin: 0;
+    height: 400px;
   }
 
   main{
@@ -234,13 +255,16 @@ footer a{
     max-width: 100%;
     padding-left: 20px;
     padding-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
   .columna2{
     width: 100%;
-    float: left;
     max-width: 100%;
     padding-left: 20px;
     padding-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
 
   .perros{
@@ -331,16 +355,17 @@ footer a{
     flex-flow: wrap;
     box-sizing: border-box;
     margin-left: 10px;
+    margin-top: 20px;
   }
 
   #perromain{
-    float:right;
+    float: right;
     width: 20%;
     max-width: 20%;
     margin: auto;
-    display: block;
+    display: inline-block;
     margin-top: 10px;
-    max-height: 190px;
+    max-height: 170px;
     flex-flow: wrap;
     box-sizing: border-box;
     margin-right: 30px;
@@ -353,7 +378,7 @@ footer a{
     display: block;
     flex-flow: wrap;
     box-sizing: border-box;
-    margin-top: 10px;
+    margin-top: 40px;
   }
 
   #perritoadopta{
@@ -365,7 +390,7 @@ footer a{
     flex-flow: wrap;
     box-sizing: border-box;
     margin-top: 35px;
-
+    margin-bottom: 20px;
   }
 
   .perros{
@@ -390,22 +415,45 @@ footer a{
     margin-top: 10px;
   }
 
-  /* .perrosContainer {
-      width: 100%;
-      display: flex;
-      flex-wrap: wrap;
+  .perroContainer img{
+    border-radius: 10%;
+    width: 100%;
+    flex-flow: wrap;
+    max-width: 500px;
+    max-height: 300px;
+  }
+
+  .perroContainer img, p {
+    margin: auto;
+  }
+
+  .perrosContainer {
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
   }
 
   .perroContainer {
-      padding: 10px;
-      margin: 5px;
-      width: 30%;
-      border: dotted black 0.5px;
+    display: inline-block;
+    padding: 15px;
+    margin: 15px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 45%;
+    border: solid black 1px;
   }
 
   .selected {
-      background-color: pink;
-  } */
+    background-color: #d7fbe8;
+    box-shadow: 0px 0px 10px 3px black;
+    transform: translateY(3px);
+    transition-duration: 0.5s;
+  }
+
+  #txtApiData{
+    display:none;
+  }
 
 }
 
@@ -428,6 +476,17 @@ footer a{
     padding: 30px;
     margin: 0 auto;
     margin-bottom: 30px;
+  }
+
+  .columna1{
+    float: left;
+    width: 70%;
+    max-width: 70%;
+    display: block;
+    flex-flow: wrap;
+    box-sizing: border-box;
+    margin-left: 10px;
+    margin-top: 45px;
   }
 
   .columna2{
@@ -475,22 +534,45 @@ footer a{
     margin-top: 10px;
   }
 
-  /* .perrosContainer {
-      width: 100%;
-      display: flex;
-      flex-wrap: wrap;
+  .perroContainer img{
+    border-radius: 10%;
+    width: 100%;
+    flex-flow: wrap;
+    max-width: 500px;
+    max-height: 300px;
+  }
+
+  .perroContainer img, p {
+    margin: auto;
+  }
+
+  .perrosContainer {
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
   }
 
   .perroContainer {
-      padding: 10px;
-      margin: 5px;
-      width: 30%;
-      border: dotted black 0.5px;
+    display: inline-block;
+    padding: 15px;
+    margin: 25px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 45%;
+    border: solid black 1px;
   }
 
   .selected {
-      background-color: pink;
-  } */
+    background-color: #d7fbe8;
+    box-shadow: 0px 0px 10px 3px black;
+    transform: translateY(3px);
+    transition-duration: 0.5s;
+  }
+
+  #txtApiData{
+    display:none;
+  }
 
 }
 
