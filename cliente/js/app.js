@@ -120,7 +120,10 @@
 
       // Agrega contenedor al html
       perrosContainer.appendChild( perroContainer );
+
     }
+
+
     // var perroContainer = document.createElement( "div" );
     // var nombreContainer = document.createElement("h3");
     // var fotoPerro = document.createElement("img");
@@ -186,5 +189,26 @@
   });
 
   loadData();
+
+  //logica de caches
+
+  if ('caches' in window) {
+    /*
+     * Check if the service worker has already cached this city's weather
+     * data. If the service worker has the data, then display the cached
+     * data while the app fetches the latest data.
+     */
+    caches.match(url).then(function(response) {
+      if (response) {
+        response.json().then(function updateFromCache(json) {
+          var results = json.query.results;
+          results.key = key;
+          results.label = label;
+          results.created = json.query.created;
+        });
+      }
+    });
+  }
+
 
 })( );

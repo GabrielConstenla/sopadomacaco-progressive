@@ -1,4 +1,4 @@
-var cacheName = 'misperris-v6';
+var cacheName = 'misperris-v7';
 var filesToCache = [
   '/',
   '/index.html',
@@ -26,7 +26,7 @@ var filesToCache = [
   '/js/app.js'
 ];
 
-var dataCacheName = 'misperrisData-v2'
+var dataCacheName = 'misperrisData-v3'
 
 self.addEventListener( 'install', function( e ) {
     console.log( '[ServiceWorker] Install' );

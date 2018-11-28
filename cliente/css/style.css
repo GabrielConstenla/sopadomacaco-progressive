@@ -205,8 +205,9 @@ footer a{
     margin: auto;
     box-sizing: border-box;
     display: flex;
-    font-size: 16px;
+    font-size: 18px;
     max-width: 100%;
+    margin-top: 10px;
   }
 
   .contenedor_form{
@@ -228,9 +229,9 @@ footer a{
     background-color: #d7fbe8;
     width: 100%;
     max-width: 100%;
-    padding: 20px;
     margin: 0;
-    height: 400px;
+    height: 250px;
+    padding: 30px;
   }
 
   main{
@@ -313,8 +314,9 @@ footer a{
     margin: auto;
     box-sizing: border-box;
     display: flex;
-    font-size: 14px;
-    padding: 0;
+    font-size: 18px;
+    max-width: 100%;
+    margin-top: 10px;
   }
 
   .contenedor_form{
@@ -440,8 +442,17 @@ footer a{
     margin: 15px;
     margin-top: 15px;
     margin-bottom: 15px;
-    width: 45%;
     border: solid black 1px;
+    width: 350px;
+    height: 500px;
+    max-height: 500px;
+    overflow: auto;
+  }
+
+  .perroContainer p{
+    margin-top: 10px;
+    margin-left: 10px;
+    font-size: 16px;
   }
 
   .selected {
@@ -450,6 +461,13 @@ footer a{
     transform: translateY(3px);
     transition-duration: 0.5s;
   }
+
+  .formularioLogin {
+    width: 75%;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
 
   #txtApiData{
     display:none;
@@ -463,8 +481,9 @@ footer a{
     margin: auto;
     box-sizing: border-box;
     display: flex;
-    font-size: 14px;
-    padding: 0;
+    font-size: 18px;
+    margin-top: 10px;
+    padding: 0px;
   }
 
   .contenedor_form{
@@ -476,6 +495,18 @@ footer a{
     padding: 30px;
     margin: 0 auto;
     margin-bottom: 30px;
+  }
+
+  .contenedor_formLogin{
+    border: 2px solid;
+    border-color: black;
+    border-radius: 30px;
+    background-color: #d7fbe8;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    height: 300px;
+    padding: 50px;
   }
 
   .columna1{
@@ -561,6 +592,13 @@ footer a{
     margin-bottom: 15px;
     width: 45%;
     border: solid black 1px;
+    overflow: auto;
+  }
+
+  .perroContainer p{
+    margin-top: 10px;
+    margin-left: 10px;
+    font-size: 18px;
   }
 
   .selected {
@@ -574,6 +612,13 @@ footer a{
     display:none;
   }
 
+  .formularioLogin{
+    width: 65%;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
 }
 
 
@@ -583,8 +628,9 @@ footer a{
     margin: auto;
     box-sizing: border-box;
     display: flex;
-    font-size: 14px;
-    padding: 0;
+    font-size: 18px;
+    margin-top: 10px;
+    padding: 0px;
   }
 
   .contenedor_form{
@@ -643,21 +689,47 @@ footer a{
     margin-top: 10px;
   }
 
-  /* .perrosContainer {
-      width: 100%;
-      display: flex;
-      flex-wrap: wrap;
+  .perrosContainer {
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
   }
 
   .perroContainer {
-      padding: 10px;
-      margin: 5px;
-      width: 30%;
-      border: dotted black 0.5px;
+    display: inline-block;
+    padding: 15px;
+    margin: 25px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 45%;
+    border: solid black 1px;
+    overflow: auto;
   }
 
-  .selected {
-      background-color: pink;
-  } */
+  .perroContainer p{
+    margin-top: 15px;
+    margin-left: 10px;
+    font-size: 18px;
+  }
+
+  .perroContainer img{
+    border-radius: 10%;
+    width: 100%;
+    flex-flow: wrap;
+    max-width: 500px;
+    max-height: 300px;
+  }
+
+  .perroContainer img, p {
+    margin-left: 10%;
+  }
+
+  .formularioLogin{
+    width: 45%;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
 
 }
