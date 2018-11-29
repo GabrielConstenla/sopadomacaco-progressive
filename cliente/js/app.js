@@ -26,6 +26,8 @@
   //   selectedPerros = JSON.parse( localStorage.getItem("selectedPerros") );
   // }
 
+
+
   var loadData = function(){
     var xhttp = new XMLHttpRequest();
     var url = "https://gaperris2.pythonanywhere.com/Perro/";
@@ -188,27 +190,44 @@
     displayPerros( perrosFiltrados );
   });
 
+  var select = document.getElementById("perrosFilter");
+  var selectOption = select.options[select.selectedIndex];
+  var lastSelected = localStorage.getItem('select');
+
+  if(lastSelected) {
+      select.value = lastSelected;
+  }
+
+  select.onchange = function () {
+     lastSelected = select.options[select.selectedIndex].value;
+     console.log(lastSelected);
+     localStorage.setItem('select', lastSelected);
+  }
+
   loadData();
 
   //logica de caches
+  function cacheApi (key , label){
 
-  if ('caches' in window) {
-    /*
-     * Check if the service worker has already cached this city's weather
-     * data. If the service worker has the data, then display the cached
-     * data while the app fetches the latest data.
-     */
-    caches.match(url).then(function(response) {
-      if (response) {
-        response.json().then(function updateFromCache(json) {
-          var results = json.query.results;
-          results.key = key;
-          results.label = label;
-          results.created = json.query.created;
-        });
-      }
-    });
+    var url = "https://gaperris2.pythonanywhere.com/Perro/";
+    if ('caches' in window) {
+      /*
+       * Check if the service worker has already cached this city's weather
+       * data. If the service worker has the data, then display the cached
+       * data while the app fetches the latest data.
+       */
+
+      caches.match(url).then(function(response) {
+        if (response) {
+          response.json().then(function updateFromCache(json) {
+            var results = json.query.results;
+            results.key = key;
+            results.label = label;
+            results.created = json.query.created;
+          });
+        }
+      });
+    }
   }
-
 
 })( );

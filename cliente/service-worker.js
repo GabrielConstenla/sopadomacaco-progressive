@@ -1,4 +1,4 @@
-var cacheName = 'misperris-v7';
+var cacheName = 'misperris-v9';
 var filesToCache = [
   '/',
   '/index.html',
@@ -26,7 +26,7 @@ var filesToCache = [
   '/js/app.js'
 ];
 
-var dataCacheName = 'misperrisData-v3'
+var dataCacheName = 'misperrisData-v5'
 
 self.addEventListener( 'install', function( e ) {
     console.log( '[ServiceWorker] Install' );
@@ -55,7 +55,7 @@ self.addEventListener( 'activate', function( e ) {
 
 self.addEventListener('fetch', function(e) {
   console.log('[Service Worker] Fetch', e.request.url);
-  var dataUrl = "https://gaperris2.pythonanywhere.com/Perro/";
+  var dataUrl = 'https://gaperris2.pythonanywhere.com/Perro/';
   if (e.request.url.indexOf(dataUrl) > -1) {
     /*
      * When the request URL contains dataUrl, the app is asking for fresh
