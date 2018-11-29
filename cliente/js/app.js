@@ -61,11 +61,10 @@
        caches.match(url).then(function(response) {
          if (response) {
            response.json().then(function updateFromCache(json) {
-             var results = json.query.results;
+             var results = json.results;
              results.key = key;
              results.label = label;
-             results.created = json.query.created;
-             app.updateForecastCard(results);
+             results.created = json.created;
            });
          }
        });
@@ -195,10 +194,7 @@
 
   }
 
-  var saveData = function( key, data ) {
-      var toSave = JSON.stringify( data );
-      localStorage.setItem( key, toSave );
-  }
+
 
   app.perrosFilter.addEventListener("change", function( e ) {
     var perrosFiltrados = app.perrosList.filter( function( perro ) {
@@ -249,6 +245,10 @@
   //   }
   // };
 
+  var saveData = function( key, data ) {
+      var toSave = JSON.stringify( data );
+      localStorage.setItem( key, toSave );
+  }
 
   loadData();
 
