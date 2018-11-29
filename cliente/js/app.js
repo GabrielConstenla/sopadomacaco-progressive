@@ -28,9 +28,9 @@
 
 
 
-  var loadData = function(){
+  var loadData = function(key, label){
     var xhttp = new XMLHttpRequest();
-    var url = "https://gaperris2.pythonanywhere.com/Perro/";
+    var url = 'https://gaperris2.pythonanywhere.com/Perro/?format=json';
 
     // xhttp.onreadystatechange = function() {
     //     if (this.readyState == 4 && this.status == 200) {
@@ -51,6 +51,25 @@
     // };
     // xhttp.open("GET", url , true);
     // xhttp.send();
+
+    if ('caches' in window) {
+      /*
+       * Check if the service worker has already cached this city's weather
+       * data. If the service worker has the data, then display the cached
+       * data while the app fetches the latest data.
+       */
+       caches.match(url).then(function(response) {
+         if (response) {
+           response.json().then(function updateFromCache(json) {
+             var results = json.query.results;
+             results.key = key;
+             results.label = label;
+             results.created = json.query.created;
+             app.updateForecastCard(results);
+           });
+         }
+       });
+    }
 
     xhttp.onreadystatechange = function() {
         if( this.readyState == 4 && this.status == 200 ){
@@ -204,30 +223,34 @@
      localStorage.setItem('select', lastSelected);
   }
 
+  //logica de caches
+  // function cacheApi (key , label){
+  //   var url = 'https://gaperris2.pythonanywhere.com/Perro/?format=json';
+  //   if ('caches' in window) {
+  //     /*
+  //      * Check if the service worker has already cached this city's weather
+  //      * data. If the service worker has the data, then display the cached
+  //      * data while the app fetches the latest data.
+  //      */
+  //
+  //     caches.match(url).then(function(response) {
+  //       if (response) {
+  //         response.json().then(function updateFromCache(json) {
+  //           var results = json.query.results;
+  //           results.key = key;
+  //           results.label = label;
+  //           results.created = json.query.created;
+  //         });
+  //         console.log(results);
+  //       }
+  //       console.log(response);
+  //       console.log(results);
+  //     });
+  //   }
+  // };
+
+
   loadData();
 
-  //logica de caches
-  function cacheApi (key , label){
-
-    var url = "https://gaperris2.pythonanywhere.com/Perro/";
-    if ('caches' in window) {
-      /*
-       * Check if the service worker has already cached this city's weather
-       * data. If the service worker has the data, then display the cached
-       * data while the app fetches the latest data.
-       */
-
-      caches.match(url).then(function(response) {
-        if (response) {
-          response.json().then(function updateFromCache(json) {
-            var results = json.query.results;
-            results.key = key;
-            results.label = label;
-            results.created = json.query.created;
-          });
-        }
-      });
-    }
-  }
 
 })( );

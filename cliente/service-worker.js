@@ -55,7 +55,7 @@ self.addEventListener( 'activate', function( e ) {
 
 self.addEventListener('fetch', function(e) {
   console.log('[Service Worker] Fetch', e.request.url);
-  var dataUrl = 'https://gaperris2.pythonanywhere.com/Perro/';
+  var dataUrl = 'https://gaperris2.pythonanywhere.com/';
   if (e.request.url.indexOf(dataUrl) > -1) {
     /*
      * When the request URL contains dataUrl, the app is asking for fresh
