@@ -26,6 +26,9 @@
   //   selectedPerros = JSON.parse( localStorage.getItem("selectedPerros") );
   // }
 
+  if(localStorage.getItem('perros')){
+    displayPerros = JSON.parse( localStorage.getItem( 'perros' ) );
+  };
 
 
   var loadData = function(key, label){
@@ -60,11 +63,11 @@
        */
        caches.match(url).then(function(response) {
          if (response) {
-           response.json().then(function updateFromCache(json) {
-             var results = json.results;
+           response.json().then(function updateFromCache(JSON) {
+             var results = JSON.results;
              results.key = key;
              results.label = label;
-             results.created = json.created;
+             results.created = JSON.created;
            });
          }
        });
@@ -76,6 +79,8 @@
             var data = JSON.parse( this.responseText );
             displayPerros( data.results );
             app.perrosList = data.results;
+
+            localStorage.setItem( 'perros', JSON.stringify( data ) );
         }
     }
     xhttp.open( 'GET', url, true );
@@ -97,30 +102,7 @@
       var razaContainer = document.createElement("p");
       var descripcionContainer = document.createElement("p");
       var estadoContainer = document.createElement("p");
-
-      //para ponerle color al seleccionarlo
-
-      // if(selectedPerros[ i ] ){
-      //   perroContainer.className = "perroContainer selected"
-      // }else{
-      //   perroContainer.className = "perroContainer"
-      // }
-      //
-      // perroContainer.addEventListener("click", function( mouse ){
-      //
-      //   if(!this.selected){
-      //     perroContainer.className = "perroContainer selected"
-      //     this.selected = true;
-      //     selectedPerros[ i ] = true;
-      //     saveData( "selectedPerros", selectedPerros );
-      //   }else{
-      //     perroContainer.className = "perroContainer";
-      //     this.selected = false;
-      //     selectedPerros[ i ] = false;
-      //     saveData("selectedPerros", selectedPerros);
-      //   }
-      //   console.log("selected");
-      // });
+      var botonAdoptar = document.createElement("button");
 
       console.log( perro )
       perroContainer.className = "perroContainer";
@@ -130,6 +112,7 @@
       razaContainer.innerHTML = "<b>Raza: </b>" +perro.raza;
       descripcionContainer.innerHTML = "<b>Descripción: </b>" +perro.descripcion;
       estadoContainer.innerHTML = "<b>Estado: </b>" +perro.estado;
+      botonAdoptar.innerHTML = "Adoptar";
 
       // Agrega los hijos
       perroContainer.appendChild( nombreContainer );
@@ -137,11 +120,36 @@
       perroContainer.appendChild( razaContainer );
       perroContainer.appendChild( descripcionContainer );
       perroContainer.appendChild( estadoContainer );
+      perroContainer.appendChild( botonAdoptar );
 
       // Agrega contenedor al html
       perrosContainer.appendChild( perroContainer );
 
     }
+
+    //para ponerle color al seleccionarlo
+
+    // if(selectedPerros[ i ] ){
+    //   perroContainer.className = "perroContainer selected"
+    // }else{
+    //   perroContainer.className = "perroContainer"
+    // }
+    //
+    // perroContainer.addEventListener("click", function( mouse ){
+    //
+    //   if(!this.selected){
+    //     perroContainer.className = "perroContainer selected"
+    //     this.selected = true;
+    //     selectedPerros[ i ] = true;
+    //     saveData( "selectedPerros", selectedPerros );
+    //   }else{
+    //     perroContainer.className = "perroContainer";
+    //     this.selected = false;
+    //     selectedPerros[ i ] = false;
+    //     saveData("selectedPerros", selectedPerros);
+    //   }
+    //   console.log("selected");
+    // });
 
 
     // var perroContainer = document.createElement( "div" );
@@ -219,36 +227,6 @@
      localStorage.setItem('select', lastSelected);
   }
 
-  //logica de caches
-  // function cacheApi (key , label){
-  //   var url = 'https://gaperris2.pythonanywhere.com/Perro/?format=json';
-  //   if ('caches' in window) {
-  //     /*
-  //      * Check if the service worker has already cached this city's weather
-  //      * data. If the service worker has the data, then display the cached
-  //      * data while the app fetches the latest data.
-  //      */
-  //
-  //     caches.match(url).then(function(response) {
-  //       if (response) {
-  //         response.json().then(function updateFromCache(json) {
-  //           var results = json.query.results;
-  //           results.key = key;
-  //           results.label = label;
-  //           results.created = json.query.created;
-  //         });
-  //         console.log(results);
-  //       }
-  //       console.log(response);
-  //       console.log(results);
-  //     });
-  //   }
-  // };
-
-  var saveData = function( key, data ) {
-      var toSave = JSON.stringify( data );
-      localStorage.setItem( key, toSave );
-  }
 
   loadData();
 
