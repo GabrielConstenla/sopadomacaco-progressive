@@ -13,74 +13,25 @@
 (function() {
 
   var txtApiData = document.getElementById( "txtApiData" );
-  var selectedPerros = [];
 
   var app = {
     perrosFilter : document.getElementById("perrosFilter"),
     perrosList: [],
+    perrosLocalList: [],
   }
-
-  //load old data
-
-  // if(localStorage.getItem( "selectedPerros" )){
-  //   selectedPerros = JSON.parse( localStorage.getItem("selectedPerros") );
-  // }
-
-  if(localStorage.getItem('perros')){
-    displayPerros = JSON.parse( localStorage.getItem( 'perros' ) );
-  };
 
 
   var loadData = function(key, label){
     var xhttp = new XMLHttpRequest();
-    var url = 'https://gaperris2.pythonanywhere.com/Perro/?format=json';
-
-    // xhttp.onreadystatechange = function() {
-    //     if (this.readyState == 4 && this.status == 200) {
-    //        var data = this.responseText;
-    //        txtApiData.style.color= "black";
-    //        txtApiData.innerHTML = data;
-    //
-    //        perros = JSON.parse(data);
-    //
-    //        for(let i in perros.results){
-    //          displayPerros( perros.results[ i ], i );
-    //        }
-    //
-    //     } else {
-    //       txtApiData.style.color = "red";
-    //       txtApiData.innerHTML = data;
-    //     }
-    // };
-    // xhttp.open("GET", url , true);
-    // xhttp.send();
-
-    if ('caches' in window) {
-      /*
-       * Check if the service worker has already cached this city's weather
-       * data. If the service worker has the data, then display the cached
-       * data while the app fetches the latest data.
-       */
-       caches.match(url).then(function(response) {
-         if (response) {
-           response.json().then(function updateFromCache(JSON) {
-             var results = JSON.results;
-             results.key = key;
-             results.label = label;
-             results.created = JSON.created;
-           });
-         }
-       });
-    }
+    var url = 'https://gaperris2.pythonanywhere.com/Perro/';
 
     xhttp.onreadystatechange = function() {
         if( this.readyState == 4 && this.status == 200 ){
             console.log( this.responseText );
             var data = JSON.parse( this.responseText );
+            localStorage.setItem('perrosLocal', JSON.stringify( data ) );
             displayPerros( data.results );
             app.perrosList = data.results;
-
-            localStorage.setItem( 'perros', JSON.stringify( data ) );
         }
     }
     xhttp.open( 'GET', url, true );
@@ -127,91 +78,37 @@
 
     }
 
-    //para ponerle color al seleccionarlo
-
-    // if(selectedPerros[ i ] ){
-    //   perroContainer.className = "perroContainer selected"
-    // }else{
-    //   perroContainer.className = "perroContainer"
-    // }
-    //
-    // perroContainer.addEventListener("click", function( mouse ){
-    //
-    //   if(!this.selected){
-    //     perroContainer.className = "perroContainer selected"
-    //     this.selected = true;
-    //     selectedPerros[ i ] = true;
-    //     saveData( "selectedPerros", selectedPerros );
-    //   }else{
-    //     perroContainer.className = "perroContainer";
-    //     this.selected = false;
-    //     selectedPerros[ i ] = false;
-    //     saveData("selectedPerros", selectedPerros);
-    //   }
-    //   console.log("selected");
-    // });
-
-
-    // var perroContainer = document.createElement( "div" );
-    // var nombreContainer = document.createElement("h3");
-    // var fotoPerro = document.createElement("img");
-    // var razaContainer = document.createElement("p");
-    // var descripcionContainer = document.createElement("p");
-    // var estadoContainer = document.createElement("p");
-    //
-    // //para ponerle color al seleccionarlo
-    //
-    // if(selectedPerros[ i ] ){
-    //   perroContainer.className = "perroContainer selected"
-    // }else{
-    //   perroContainer.className = "perroContainer"
-    // }
-    //
-    // perroContainer.addEventListener("click", function( mouse ){
-    //
-    //   if(!this.selected){
-    //     perroContainer.className = "perroContainer selected"
-    //     this.selected = true;
-    //     selectedPerros[ i ] = true;
-    //     saveData( "selectedPerros", selectedPerros );
-    //   }else{
-    //     perroContainer.className = "perroContainer";
-    //     this.selected = false;
-    //     selectedPerros[ i ] = false;
-    //     saveData("selectedPerros", selectedPerros);
-    //   }
-    //   console.log("selected");
-    // });
-    // console.log( perro )
-    // fotoPerro.src = perro.fotografiaUrl;
-    // fotoPerro.alt = perro.nombre;
-    // nombreContainer.innerHTML = perro.nombre;
-    // razaContainer.innerHTML = "<b>Raza: </b>" +perro.raza;
-    // descripcionContainer.innerHTML = "<b>Descripción: </b>" +perro.descripcion;
-    // estadoContainer.innerHTML = "<b>Estado: </b>" +perro.estado;
-    //
-    // // Agrega los hijos
-    // perroContainer.appendChild( nombreContainer );
-    // perroContainer.appendChild( fotoPerro );
-    // perroContainer.appendChild( razaContainer );
-    // perroContainer.appendChild( descripcionContainer );
-    // perroContainer.appendChild( estadoContainer );
-    //
-    // // Agrega contenedor al html
-    // perrosContainer.appendChild( perroContainer );
-
   }
 
+  if(navigator.onLine){
 
+    app.perrosFilter.addEventListener("change", function( e ) {
+      var perrosFiltrados = app.perrosList.filter( function( perro ) {
+          if( perro.estado == app.perrosFilter.value || app.perrosFilter.value == "TODOS" ) {
+            return perro;
+          }
+      } );
+      displayPerros( perrosFiltrados );
+    });
 
-  app.perrosFilter.addEventListener("change", function( e ) {
-    var perrosFiltrados = app.perrosList.filter( function( perro ) {
-        if( perro.estado == app.perrosFilter.value || app.perrosFilter.value == "TODOS" ) {
-          return perro;
-        }
-    } );
-    displayPerros( perrosFiltrados );
-  });
+    loadData();
+  }else{
+
+    var perroLocal = JSON.parse(localStorage.getItem( 'perrosLocal' ) );
+    console.log(perroLocal);
+    app.perrosLocalList = perroLocal.results;
+    displayPerros( app.perrosLocalList );
+
+    app.perrosFilter.addEventListener("change", function( e ) {
+      var perrosFiltradosLocal = app.perrosLocalList.filter( function( perro ) {
+          if( perro.estado == app.perrosFilter.value || app.perrosFilter.value == "TODOS" ) {
+            return perro;
+          }
+      } );
+      displayPerros( perrosFiltradosLocal );
+    });
+
+  }
 
   var select = document.getElementById("perrosFilter");
   var selectOption = select.options[select.selectedIndex];
@@ -228,7 +125,6 @@
   }
 
 
-  loadData();
 
 
 })( );
